@@ -64,10 +64,9 @@ local function poll()
     -- Detect inactivity and take action
     if now - last_activity_time >= TIMEOUT then
         emu.print_info("--- NO ACTIVITY for 10 minutes ("..TIMEOUT.."s) ---")
-        emu.print_info("Exiting MAME by sending ESC keypress.")
+        emu.print_info("Exiting MAME.")
         
-        -- Send the ESC key to exit MAME or enter the menu
-        emu.exit()
+        manager.machine:exit()
         
         -- Optionally, unregister the function to stop checking once action is taken
         emu.unregister_frame_done(poll) 
